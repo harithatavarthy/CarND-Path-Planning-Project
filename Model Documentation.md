@@ -1,13 +1,8 @@
-# CarND-MPC-Project - MODEL PREDICTIVE CONTROLLER
+# CarND-Path-Planning-Project
 
 ## Reflection
 
-Objective of the project is to build a Model Predictive controller that can provide steer and throttle commands to the simulator in such a way that the vehcile can reliably drive around the track by predicting where the vehicle will be in the next few time steps. Such ability to predict and control ensures smooth navigation through out track unlike PID controller which has many jerks and breaks. The simulator provides the required 'way points', 'vehicles position in map cooridnates, 'velocity' and 'Orientation angle' for the controller to use as inputs and to arrive at commands to pass back to the simulator.
-
-The solution provided is robust enough to handle an inherent latency of 100 Milli seconds - meaning, there will be approximately 100 milli second latency between arriving at the optimal values for actuation and the application of the actuation itself. The provided solution  also ensures the vehicle stays on track all the time and none of the tires  leave the drivable portion of the track surface even when the vehicle attains speeds of 80 Mile Per Hour. The trick to achieve this is by knowing the magnitude of penalty by which the vehicle should be penalized.
-
-
-
+Objective of the project is to build a path planner for an autonomous car driving on a 3-lane highway. The path planner uses Sensor Data, Map Data and Localization techniques to comprehend the behaviour of the surroundings objects and prepare inputs to the cars controller in such a way that the car maneuvers smoothly and without colliding other vehicles. The path planner starts by reading the sensor data and generate prediction of the current and future states of the vehicular traffic around the autonomous car. Then it relies on  Finite state machines to identify the next set of available trajectories given the current state of the car and produces kinematics for each of these possible trajectories. A cost function will help identify the best trajectory to follow. Finally the controller  smoothens this trajectory with the help of a spline tool.
 
 ## Project Rubric Discussion Points
 
