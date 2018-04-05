@@ -4,7 +4,7 @@
 
 Objective of the project is to build a path planner for an autonomous car driving on a 3-lane highway. The path planner uses Sensor Data, Map Data and Localization techniques to comprehend the behaviour of the surroundings objects and prepare inputs to the cars controller in such a way that the car maneuvers smoothly and without colliding other vehicles. The path planner starts by reading the sensor data and generate prediction of the current and future states of the vehicular traffic around the autonomous car. Then it relies on  Finite state machines to identify the next set of available states/trajectories given the current state of the car and produces kinematics for each of these possible trajectories. A cost function will help identify the best trajectory to follow. Finally the planning process ends by fitting a lane through the start and end points and smoothens the trajectory with the help of a spline tool.
 
-The car was able to successfully complete four laps around the highway without exceeding the accelaration/Jerk limits. The car stayed in the center of the lane except when changing lanes. The car was able to sense the traffic around it in a timely fashion and adjust the speed when required. Also the car chose the the best lane to follow based on the average lane speed.
+The car was able to successfully complete four laps around the highway without exceeding  accelaration/Jerk limits. The car stayed in the center of the lane except when changing lanes. The car was able to sense the traffic around it in a timely fashion and adjust the speed whenever required. Also the car chose the the best lane to follow based on the average lane speed.
 
 ## Avoiding Max Acceleration and Jerk
 
