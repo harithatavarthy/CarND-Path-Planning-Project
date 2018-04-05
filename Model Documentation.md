@@ -22,7 +22,42 @@ Avoiding sudden changes in acceleration and jerks is key for a smooth and comfor
   
   Once the new reference velocity is set, the next step is to create a set of equally spaced way points for the vehicle to traverse. This is achieved by using the target longitudinal displacement (s Value), target lane (d Value), target velocity ( adjusted reference velocity) and combine it with the previous way points that are not yet traversed by the vehicle and interopolate a smooth lane by using a spline tool. Code for this can be found between lane # 348 and 476 of main.cpp.
   
+  ## Predictions using Sensor Fusion Data
   
+  It is important for the path planning process to have informaiton on ever changing dynamic data of vehicular traffic around the autonomous car in order to come up with the best trajectory at each time step. We will read the sensor data and create a prediction set of current and future positions of the vehicular traffic. The code for this can be found between lane # 287 to 318 of main.cpp
+  
+           `vector<Vehicle> traffic;
+            map<int, vector<Vehicle>> predictions;
+            
+            
+            for(int i=0;i<sensor_fusion.size();i++)
+            {
+               
+                double vx = sensor_fusion[i][3];
+                double vy = sensor_fusion[i][4];
+                double check_speed = sqrt(vx*vx + vy*vy);
+                double check_car_s = sensor_fusion[i][5];
+                check_car_s += ((double)prev_size*.02*check_speed);
+                double check_car_d = sensor_fusion[i][6];
+                //double check_car_future_s = check_car_s + (1 * check_speed);
+                int traffic_id = sensor_fusion[i][0];
+                int traffic_lane_now = -1;
+                for(int j=0; j<3 ; j++)
+                {
+                    if(check_car_d <= (2+(4*j)+2) && check_car_d > (2+(4*j)-2))
+                    {
+                        traffic_lane_now = j;
+                    }
+                        
+                }
+
+                
+                Vehicle otherv = Vehicle(traffic_lane_now,check_car_s,check_car_d,check_speed,0,"KL");
+                
+                traffic.push_back(otherv);
+                predictions[traffic_id] = traffic;
+                
+            }`
            
 
 
